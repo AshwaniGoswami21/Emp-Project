@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <button type="submit" class="add-employee-btn">Add Employee 👨‍💻</button>
+
+    <table class="employee-table">
+        <thead>
+        <tr>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>EMAIL ID</th>
+            <th>ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody id="employeeTableBody">
+        <tr th:each="employee : ${employeeList}">
+            <td th:text="${employee.name}">Name</td>
+            <td th:text="${employee.email}">Email</td>
+            <td th:text="${employee.phone}">Phone</td>
+            <td>
+                <button type="submit" class="action-btn edit-btn">Edit</button>
+                <button type="submit" class="action-btn delete-btn">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevBtn" onclick="prevPage()">Previous</button>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
+    </div>
+</div>
+
+<script>
+    const rowsPerPage = 10;
+    let currentPage = 1;
+    const tableBody = document.getElementById("employeeTableBody");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+    function displayRows() {
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? "" : "none";
+        });
+
+        document.getElementById("prevBtn").disabled = currentPage === 1;
+        document.getElementById("nextBtn").disabled = end >= rows.length;
+    }
+
+    function nextPage() {
+        if (currentPage * rowsPerPage < rows.length) {
+            currentPage++;
+            displayRows();
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayRows();
+        }
+    }
+
+    displayRows();
+</script>
+</body>
+</html>
