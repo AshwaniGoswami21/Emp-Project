@@ -12,5 +12,7 @@ To complete this project, please add a frontend interface that connects with the
 
 Installation:
 *Clone the repository.
+*Download XAMPP server start it.
+*Open database and name the database as jdbc(name which is used in the project).
 *Navigate to the project directory.
 *Run the application using your preferred IDE or command line.
