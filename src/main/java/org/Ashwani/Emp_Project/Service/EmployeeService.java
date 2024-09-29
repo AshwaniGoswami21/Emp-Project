@@ -9,5 +9,5 @@ public interface EmployeeService {
     Employee readEmployee(Long id);
     List<Employee> readEmployees();
     boolean deleteEmployee(Long id);
-    String updateEmployee(Long id, Employee employee);
+    String updateEmployee(Employee employee);
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Employee</title>
+  <link rel="stylesheet" th:href="@{/css/addEmployee.css}">
+</head>
+<body>
+<div class="container">
+  <h2 class="form-heading">Update Employee</h2>
+
+  <form th:action="@{/updateEmployee}" th:object="${employee}" method="post" class="employee-form">
+    <input type="hidden" th:field="*{id}" />
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" th:field="*{name}" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" th:field="*{phone}" class="form-input" required>
+    </div>
+
+    <button type="submit" class="add-employee-btn">Update Employee 👨‍💻</button>
+  </form>
+</div>
+</body>
+</html>

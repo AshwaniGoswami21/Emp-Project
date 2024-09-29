@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #1e2a38;
+    background: url("../images/bg-image.jpg") no-repeat center center fixed;
+    background-size: cover;
     color: white;
     margin: 0;
     padding: 20px;
@@ -85,4 +87,4 @@ body {
 
 .action-btn:hover {
     text-decoration: underline;
-}
+} 

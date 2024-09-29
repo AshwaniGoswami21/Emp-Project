@@ -31,9 +31,9 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public Employee readEmployee(Long id) {
-        EmployeeEntity employeeEntity = new EmployeeEntity();
+        EmployeeEntity employeeEntity = employeeRepository.findById(id).get();
         Employee emp = new Employee();
-        BeanUtils.copyProperties(emp,employeeEntity);
+        BeanUtils.copyProperties(employeeEntity,emp);
 
         return emp;
     }
@@ -64,11 +64,11 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public String updateEmployee(Long id, Employee employee) {
-        EmployeeEntity existingEmployee = employeeRepository.findById(id).get();
+    public String updateEmployee(Employee employee) {
+        EmployeeEntity existingEmployee = employeeRepository.findById(employee.getId()).get();
 
-        existingEmployee.setEmail(employee.getEmail());
         existingEmployee.setName(employee.getName());
+        existingEmployee.setEmail(employee.getEmail());
         existingEmployee.setPhone(employee.getPhone());
 
         employeeRepository.save(existingEmployee);
